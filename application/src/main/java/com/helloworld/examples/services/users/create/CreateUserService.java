@@ -13,19 +13,18 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CreateUserService implements CreateUserUseCase {
-	private final CreateUserRepository userRepository;
+    private final CreateUserRepository userRepository;
 
-	@Override
-	public CreateUserOutput createUser(CreateUserInput input) throws InsufficientPrivilegesException {
-		input.validate();
-		User newUser = input.getNewUserData();
-		if(!Role.ADMINISTRATOR.equals(input.getWho().getRole()))
-			throw new InsufficientPrivilegesException();
+    @Override
+    public CreateUserOutput createUser(CreateUserInput input) throws Exception {
+        input.validate();
+        User newUser = input.getNewUserData();
+        if (!Role.ADMINISTRATOR.equals(input.getWho().getRole())) throw new InsufficientPrivilegesException();
 
-		Long identifier = userRepository.createUser(input.getNewUserData());
-		newUser.setUserId(identifier);
-		return CreateUserOutput.builder().newUser(newUser).build();
-	}
+        Long identifier = userRepository.createUser(input.getNewUserData());
+        newUser.setUserId(identifier);
+        return CreateUserOutput.builder().newUser(newUser).build();
+    }
 
 
 }

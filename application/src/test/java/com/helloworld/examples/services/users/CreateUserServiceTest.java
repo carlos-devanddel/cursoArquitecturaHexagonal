@@ -2,6 +2,7 @@ package com.helloworld.examples.services.users;
 
 import com.helloworld.examples.enums.Role;
 import com.helloworld.examples.exceptions.InsufficientPrivilegesException;
+import com.helloworld.examples.exceptions.InvalidParameterException;
 import com.helloworld.examples.models.User;
 import com.helloworld.examples.port.in.users.create.models.CreateUserInput;
 import com.helloworld.examples.port.out.users.create.CreateUserRepository;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 
 class CreateUserServiceTest {
     CreateUserService sut;
@@ -41,7 +43,7 @@ class CreateUserServiceTest {
     void createUser_should_throwInvalidParameter_when_userHasInvalidEmail() {
         input.getNewUserData().setEmail("carlosdevanddel.com");
 
-        Assertions.assertThrows(InsufficientPrivilegesException.class, () -> sut.createUser(input));
+        Assertions.assertThrows(InvalidParameterException.class, () -> sut.createUser(input));
     }
 
     @Test
