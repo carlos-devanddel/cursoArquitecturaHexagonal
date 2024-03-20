@@ -6,18 +6,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class CreateUserDB2Repository implements CreateUserRepository {
 
-	private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-	@Override
-	public Long createUser(User newUserData) {
-		Long newId = jdbcTemplate.queryForObject("SELECT MAX(ID)+1 FROM USUARIO", Long.class);
-		String insert = "INSERT INTO USUARIO(ID, NOMBRE, APELLIDOS, TELEFONO, EMAIL) VALUES (?,?,?,?,?)";
-		jdbcTemplate.update(insert, newId, newUserData.getName(), newUserData.getSurname(),
-				newUserData.getPhoneNumber(), newUserData.getEmail());
-		return newId;
-	}
+    @Override
+    public Long createUser(User newUserData) {
+        Long newId = Optional.ofNullable(jdbcTemplate.queryForObject("SELECT MAX(ID)+1 FROM USUARIO", Long.class))
+                .orElse(1L);
+        String insert = "INSERT INTO USUARIO(ID, NAME, SURNAME, PHONE, MAIL) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(insert, newId, newUserData.getName(), newUserData.getSurname(), newUserData.getPhoneNumber(), newUserData.getEmail());
+        return newId;
+    }
 }
