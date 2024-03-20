@@ -12,6 +12,6 @@ public class DeleteUserResponse {
     boolean success;
 
     public static DeleteUserResponse fromApplicationModel(DeleteUserOutput output) {
-        return null;
+        return DeleteUserResponse.builder().success(output.isSuccess()).build();
     }
 }
