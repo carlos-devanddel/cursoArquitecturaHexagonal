@@ -1,9 +1,15 @@
 package com.helloworld.examples.persistence.h2.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "USUARIO")
 public class UserEntity {
+    @Id
     private Long id;
     private String name;
     private String surname;
