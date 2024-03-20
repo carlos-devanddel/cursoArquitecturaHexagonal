@@ -1,7 +1,6 @@
 package com.helloworld.examples.persistence.repositories.users.create;
 
 import com.helloworld.examples.models.User;
-import com.helloworld.examples.port.out.users.create.CreateUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class CreateUserDB2Repository implements CreateUserRepository {
+public class CreateUserH2Repository implements com.helloworld.examples.port.out.users.create.CreateUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
