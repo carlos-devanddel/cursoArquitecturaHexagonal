@@ -1,4 +1,4 @@
-package com.helloworld.examples.persistence.repositories.users.create;
+package com.helloworld.examples.persistence.h2.repositories.users.create;
 
 import com.helloworld.examples.models.User;
 import lombok.RequiredArgsConstructor;

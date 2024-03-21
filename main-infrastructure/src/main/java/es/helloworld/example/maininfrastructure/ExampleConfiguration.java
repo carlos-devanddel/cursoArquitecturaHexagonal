@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @org.springframework.context.annotation.Configuration
 @ComponentScan("com.helloworld.examples")
-@EntityScan("com.helloworld.examples.persistence.models")
+@EntityScan("com.helloworld.examples.persistence.h2.models")
 public class ExampleConfiguration {
 
 }
