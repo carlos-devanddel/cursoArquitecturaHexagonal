@@ -16,7 +16,7 @@ public class DeleteUserPresenter {
     private final DeleteUserUseCase useCase;
 
     @PostMapping(path = "/delete")
-    DeleteUserResponse createUser(@RequestBody DeleteUserRequest request) throws Exception {
+    DeleteUserResponse deleteUser(@RequestBody DeleteUserRequest request) throws Exception {
         var output = useCase.deleteUser(request.toApplicationModel());
         return DeleteUserResponse.fromApplicationModel(output);
     }
