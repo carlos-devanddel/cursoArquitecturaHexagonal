@@ -1,4 +1,4 @@
-package com.helloworld.examples.persistence.repositories.users.delete;
+package com.helloworld.examples.persistence.h2.repositories.users.delete;
 
 import com.helloworld.examples.port.out.users.delete.DeleteUserRepository;
 import lombok.RequiredArgsConstructor;
