@@ -1,4 +1,4 @@
-package com.helloworld.examples.persistence.models;
+package com.helloworld.examples.persistence.h2.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
