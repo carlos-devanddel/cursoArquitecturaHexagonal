@@ -18,7 +18,11 @@ public class DeleteUserService implements DeleteUserUseCase {
     public DeleteUserOutput deleteUser(DeleteUserInput input) throws InsufficientPrivilegesException {
         if (!Role.ADMINISTRATOR.equals(input.getWho().getRole())) throw new InsufficientPrivilegesException();
 
-        userRepository.deleteUser(input.getUserToDelete());
+        try {
+            userRepository.deleteUser(input.getUserToDelete());
+        } catch (Exception e) {
+            return DeleteUserOutput.builder().success(false).build();
+        }
 
         return DeleteUserOutput.builder().success(true).build();
     }
